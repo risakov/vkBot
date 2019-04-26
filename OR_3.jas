@@ -1,0 +1,16 @@
+// OR_3.jas
+//
+//  Author
+//    Alexei Kormilenko
+//
+//  Description
+//    Program to add 3 words with single instruction.
+//
+
+.main				// start of program
+start:
+	BIPUSH 0x1
+	BIPUSH 0x3
+	BIPUSH 0x4
+	OR_3
+.end-main
