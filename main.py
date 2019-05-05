@@ -61,10 +61,10 @@ def posting(dateParse):
                 f.close()
 
                 dateParse = dateDefault
-                time.sleep(15)
+                time.sleep(30)
                 continue
             else:
-                time.sleep(15)
+                time.sleep(30)
                 continue
 
             '''allDates = []
