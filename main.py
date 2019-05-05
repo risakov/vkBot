@@ -6,8 +6,11 @@ from urllib import request
 import sys
 import vk_parsing
 import dateutil.parser as dparser
-
-def posting():
+f = open('date.txt', 'r+')
+dateParse = f.readline()
+f.truncate()
+f.close()
+def posting(dateParse):
     myUrl = "https://new.broadcast.vkforms.ru/api/v1/user-list/663462?token=api_61099_QpGpiIef1uuqHHKhWwH5i4PA"
     token = "1030fbd1aa04badd72660e75dcddf9212386711adf8c721a0fe314890adebddb94331e345bd5c0e2ec2e5"
     vkSession = vk_api.VkApi(token=token)
@@ -16,15 +19,14 @@ def posting():
     urlOfImage = ""
     owner_id = -159597286
     dateMain = 0;
-    dateParse = "Tue Apr 30 17:31:53 2019"
     while True:
         # get IDs of subscribers in a list
         try:
             req = request.Request(myUrl)
-            otvet = request.urlopen(req)
-            otvet = otvet.readlines()
+            answer = request.urlopen(req)
+            answer = answer.readlines()
             listOfIds = []
-            for line in otvet:
+            for line in answer:
                 listOfIds.append(int(line))
 
         except Exception:
@@ -38,20 +40,25 @@ def posting():
             print(parses)
 
             # Format of string
-
             dateDefault = time.ctime(int(parses["date"]))
             print(dateDefault)
             dateParse1 = dparser.parse(dateDefault)
             dateParse2 = dparser.parse(dateParse)
             if dateParse1 > dateParse2:
-                vkSession.method('messages.send',
-                                 {'user_id': 122434565,
-                                  "random_id": 0,
-                                  "message": parses["text"],
-                                  "attachment": "photo" + str(owner_id) + "_" + parses["id1"] + ',' +
-                                                "photo" + str(owner_id) + "_" + parses["id2"] + ',' +
-                                                "photo" + str(owner_id) + "_" + parses["id3"]
-                                  })
+                for i in range(len(listOfIds)):
+                    vkSession.method('messages.send',
+                                     {'user_id': listOfIds[i],
+                                      "random_id": 0,
+                                      "message": parses["text"],
+                                      "attachment": "photo" + str(owner_id) + "_" + parses["id1"] + ',' +
+                                                    "photo" + str(owner_id) + "_" + parses["id2"] + ',' +
+                                                    "photo" + str(owner_id) + "_" + parses["id3"]
+                                      })
+
+                f = open('date.txt', 'w')
+                f.write(dateDefault)
+                f.close()
+
                 dateParse = dateDefault
                 time.sleep(15)
                 continue
@@ -83,6 +90,6 @@ def posting():
                                         "photo" + str(owner_id) + "_" + parses["id3"]
                           })
         time.sleep(60)'''
-posting()
+posting(dateParse)
 
 
