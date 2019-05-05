@@ -54,6 +54,7 @@ def posting(dateParse):
                                                     "photo" + str(owner_id) + "_" + parses["id2"] + ',' +
                                                     "photo" + str(owner_id) + "_" + parses["id3"]
                                       })
+                    time.sleep(0.2)
 
                 f = open('date.txt', 'w')
                 f.write(dateDefault)
