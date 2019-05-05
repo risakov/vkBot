@@ -45,6 +45,7 @@ def posting(dateParse):
             dateParse1 = dparser.parse(dateDefault)
             dateParse2 = dparser.parse(dateParse)
             if dateParse1 > dateParse2:
+                print("ssss")
                 for i in range(len(listOfIds)):
                     vkSession.method('messages.send',
                                      {'user_id': listOfIds[i],
