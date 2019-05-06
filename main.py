@@ -40,7 +40,7 @@ def posting(dateParse):
             print(parses)
 
             # Format of string
-            dateDefault = time.ctime(int(parses["date"]))
+            dateDefault = time.ctime(int(parses["date"]) + 7200)
             dateParse1 = dparser.parse(dateDefault)
             print(dateParse1)
             dateParse2 = dparser.parse(dateParse)
