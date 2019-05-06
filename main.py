@@ -46,16 +46,16 @@ def posting(dateParse):
             dateParse2 = dparser.parse(dateParse)
             print(dateParse2)
             if dateParse1 > dateParse2:
-                #for i in range(len(listOfIds)):
-                vkSession.method('messages.send',
-                                 {'user_id': 122434565,
-                                  "random_id": 0,
-                                  "message": parses["text"],
-                                  "attachment": "photo" + str(owner_id) + "_" + parses["id1"] + ',' +
-                                                "photo" + str(owner_id) + "_" + parses["id2"] + ',' +
-                                                "photo" + str(owner_id) + "_" + parses["id3"]
-                                  })
-                    #time.sleep(0.2)
+                for i in range(len(listOfIds)):
+                    vkSession.method('messages.send',
+                                    {'user_id': listOfIds[i],
+                                    "random_id": 0,
+                                    "message": parses["text"],
+                                    "attachment": "photo" + str(owner_id) + "_" + parses["id1"] + ',' +
+                                                  "photo" + str(owner_id) + "_" + parses["id2"] + ',' +
+                                                  "photo" + str(owner_id) + "_" + parses["id3"]
+                                    })
+                    time.sleep(0.2)
                 f = open('date.txt', 'w')
                 f.write(dateDefault)
                 f.close()
