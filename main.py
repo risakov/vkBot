@@ -1,6 +1,4 @@
-from vk_api.longpoll import VkLongPoll, VkEventType
 import vk_api
-from datetime import datetime
 import time
 from urllib import request
 import sys
@@ -11,14 +9,10 @@ dateParse = f.readline()
 f.truncate()
 f.close()
 def posting(dateParse):
-    myUrl = "https://new.broadcast.vkforms.ru/api/v1/user-list/663462?token=api_61099_QpGpiIef1uuqHHKhWwH5i4PA"
-    token = "1030fbd1aa04badd72660e75dcddf9212386711adf8c721a0fe314890adebddb94331e345bd5c0e2ec2e5"
+    myUrl = "https://new.broadcast.vkforms.ru/api/v1/user-list/669775?token=180051651_3a73d716bffe3eb086d9547eec11e50c41db7adfee50646705ce039b5ed0fcf2_122434565A5748831A180051651"
+    token = "5e2c18d79669d159425b1f8a66b92211fe94455333858f017cfc50c4db367eadfb7c2e95a260550fc9938"
     vkSession = vk_api.VkApi(token=token)
-    sessionApi = vkSession.get_api()
-    longPool = VkLongPoll(vkSession)
-    urlOfImage = ""
-    owner_id = -159597286
-    dateMain = 0;
+    owner_id = -180051651
     while True:
         # get IDs of subscribers in a list
         try:

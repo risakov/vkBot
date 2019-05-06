@@ -1,13 +1,10 @@
 import requests
-import time
 import csv
-import sys
-from datetime import datetime
 
 #function that just take a last post
 def takeLastPost():
     token = "8e8d74f28e8d74f28e8d74f2618ee7358388e8d8e8d74f2d249bba3b1d4725d1db9525e"
-    owner_id = '-159597286'
+    owner_id = '-180051651'
     version = 5.95
 
     response = requests.get('https://api.vk.com/method/wall.get',
@@ -84,18 +81,11 @@ def file_reader():
         dictOfData["id2"] = listOfData[0][2]
         dictOfData["id3"] = listOfData[0][3]
         dictOfData["date"] = listOfData[0][4]
-
-
-        '''dictOfData = {}
-        dictOfData["text"] = listOfData[0]
-        dictOfData["id"] = listOfData[1]
-        dictOfData["date"] = listOfData[2]
-        dictOfData["is_pinned"] = listOfData[3]'''
         return dictOfData
 
 '''
 token = "8e8d74f28e8d74f28e8d74f2618ee7358388e8d8e8d74f2d249bba3b1d4725d1db9525e"
-owner_id = '-159597286'
+owner_id = '-180051651'
 version = 5.95
 response = requests.get('https://api.vk.com/method/wall.get',
                         params={
