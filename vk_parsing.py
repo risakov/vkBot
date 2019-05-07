@@ -1,8 +1,9 @@
 import requests
 import csv
 
+
 #function that just take a last post
-def takeLastPost():
+def take_last_post():
     token = "8e8d74f28e8d74f28e8d74f2618ee7358388e8d8e8d74f2d249bba3b1d4725d1db9525e"
     owner_id = '-180051651'
     version = 5.95
@@ -19,12 +20,13 @@ def takeLastPost():
     data = response.json()["response"]["items"]
     return data
 
+
 #function that allow to take a neccesary data and write it in a file
 def file_writer(data):
     with open('sales4life.csv', 'w') as file:
         a_pen = csv.writer(file)
         #if post not pinned - except
-            #else this post is needed
+        #else this post is needed
         try:
             if (data[0]['is_pinned']):
                 try:
@@ -66,34 +68,18 @@ def file_writer(data):
                 pass
 
 
-
-
 #function that read a created file and write data in the list
 def file_reader():
     with open("sales4life.csv", 'r') as file:
         a_pen = csv.reader(file)
-        listOfData = []
+        list_of_data = []
         for row in a_pen:
-            listOfData.append(row)
-        dictOfData = {}
-        dictOfData["text"] = listOfData[0][0]
-        dictOfData["id1"] = listOfData[0][1]
-        dictOfData["id2"] = listOfData[0][2]
-        dictOfData["id3"] = listOfData[0][3]
-        dictOfData["date"] = listOfData[0][4]
-        return dictOfData
+            list_of_data.append(row)
 
-'''
-token = "8e8d74f28e8d74f28e8d74f2618ee7358388e8d8e8d74f2d249bba3b1d4725d1db9525e"
-owner_id = '-180051651'
-version = 5.95
-response = requests.get('https://api.vk.com/method/wall.get',
-                        params={
-                            'access_token': token,
-                            'v': version,
-                            'owner_id': owner_id,
-                            'count': 2,
-                            'offset': 0
-                            }
-                            )
-data = response.json()'''
+        dict_of_data = {}
+        dict_of_data["text"] = list_of_data[0][0]
+        dict_of_data["id1"] = list_of_data[0][1]
+        dict_of_data["id2"] = list_of_data[0][2]
+        dict_of_data["id3"] = list_of_data[0][3]
+        dict_of_data["date"] = list_of_data[0][4]
+        return dict_of_data
