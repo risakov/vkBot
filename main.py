@@ -50,7 +50,7 @@ def posting(date_parse):
     url_mens = "https://new.broadcast.vkforms.ru/api/v1/user-list/670237?token=180051651_" \
                   "b30bb78fac79bd4b44ceff60ab08e410a17205c1aa5ad5a498095c2a9a57b776_122434565A5748831A180051651"
     url_women = "https://new.broadcast.vkforms.ru/api/v1/user-list/670243?token=180051651_" \
-                   "b30bb78fac79bd4b44ceff60ab08e410a17205c1aa5ad5a498095c2a9a57b776_122434565A5748831A180051651"
+                "b30bb78fac79bd4b44ceff60ab08e410a17205c1aa5ad5a498095c2a9a57b776_122434565A5748831A180051651"
 
     token = "5e2c18d79669d159425b1f8a66b92211fe94455333858f017cfc50c4db367eadfb7c2e95a260550fc9938"
     vk_session = vk_api.VkApi(token=token)
@@ -72,7 +72,6 @@ def posting(date_parse):
             data = vk_parsing.take_last_post()
             vk_parsing.file_writer(data)
             # creating new list with data of the last post
-
             parses = vk_parsing.file_reader()
 
             str_for_search = parses["text"]
@@ -83,25 +82,26 @@ def posting(date_parse):
                 is_men = 1
             print(parses)
 
-
             # Format of string
             default_date = time.ctime(int(parses["date"]))
             date_parse1 = dparser.parse(default_date)
             print(date_parse1)
             date_parse2 = dparser.parse(date_parse)
             print(date_parse2)
+            big_list_of_ids = []
+            #big_list_of_ids = list_of_ids_all
+
             if date_parse1 > date_parse2:
                 if (is_men):
-                    message_send(vk_session, list_of_ids_mens, parses, owner_id)
-                    rewrite_data(default_date)
-                    date_parse = default_date
-                    time.sleep(30)
-                    continue
+                    big_list_of_ids.extend(list_of_ids_mens)
                 if (is_woman):
-                    message_send(vk_session, list_of_ids_women, parses, owner_id)
-                    rewrite_data(default_date)
-                    date_parse = default_date
-                    time.sleep(30)
+                    big_list_of_ids.extend(list_of_ids_women)
+                big_list_of_ids = set(big_list_of_ids)
+                big_list_of_ids = list(big_list_of_ids)
+                message_send(vk_session, big_list_of_ids, parses, owner_id)
+                rewrite_data(default_date)
+                date_parse = default_date
+                time.sleep(30)
             else:
                 time.sleep(30)
                 continue
