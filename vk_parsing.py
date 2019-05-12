@@ -1,10 +1,21 @@
 import requests
 import csv
 
-
+def find_ln(first, str):
+    num = 0
+    last = 0
+    for i in range(first, len(str)):
+        if str[i] == "\n":
+            last = i
+            break
+    if num == 1:
+        return "Null"
+    elif "f" not in str:
+        return "Null2"
+    return str[first:last+1]
 #function that just take a last post
 def take_last_post():
-    token = "8e8d74f28e8d74f28e8d74f2618ee7358388e8d8e8d74f2d249bba3b1d4725d1db9525e"
+    token = "c4fc6150c4fc6150c4fc6150a5c4961f6bcc4fcc4fc61509829fb9ad3def5d02155576e"
     owner_id = '-180051651'
     version = 5.95
 
@@ -83,3 +94,4 @@ def file_reader():
         dict_of_data["id3"] = list_of_data[0][3]
         dict_of_data["date"] = list_of_data[0][4]
         return dict_of_data
+
